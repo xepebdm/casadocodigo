@@ -41,4 +41,12 @@ public class ProdutoDAO {
 	    query.setParameter("tipoPreco", tipoPreco);
 	    return query.getSingleResult();
 	}
+
+	public List<Produto> listarPorData(String data) {
+		return manager.createQuery("select distinct(p) from Produto p join fetch p.precos "
+				+ "where dataLancamento > :pData "
+				+ "order by dataLancamento ", Produto.class)
+				.setParameter("pData", data)
+				.getResultList();
+	}
 }
