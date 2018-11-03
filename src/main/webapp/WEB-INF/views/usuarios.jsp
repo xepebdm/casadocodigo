@@ -9,12 +9,18 @@
 
 <tags:pageTemplate
 	titulo="Livros de Java, Android, iPhone, Ruby, PHP e muito mais ....">
+	<head>
+<style>
+h3 {
+	text-align: justify;
+}
+</style>
+	</head>
 
 	<section id="index-section" class="container middle">
-		<a href="${s:mvcUrl('UC#form').build()}">Novo Usuário</a>
-		<p>${sucesso}</p>
-		<p>${falha}</p>
-		<h2>Lista de Usuários</h2>
+		<a href="${s:mvcUrl('UC#form').build()}" method="GET">Novo Usuário</a>
+		<h3>${sucesso}</h3>
+		<h3>Lista de Usuários</h3>
 		<table class="table table-striped" width="100%">
 			<thead class="thead-light">
 				<tr>

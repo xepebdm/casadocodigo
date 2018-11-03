@@ -4,9 +4,21 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import br.com.casadocodigo.loja.dao.UsuarioDAO;
 import br.com.casadocodigo.loja.models.Usuario;
 
+
 public class UsuarioValidation implements Validator {
+	
+	
+	private UsuarioDAO dao;
+
+	
+	public UsuarioValidation(UsuarioDAO dao) {
+		this.dao = dao;
+	}
+	public UsuarioValidation() {
+	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -15,8 +27,8 @@ public class UsuarioValidation implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "nome", "fiel.required");
-		ValidationUtils.rejectIfEmpty(errors, "email", "fiel.required");
+		ValidationUtils.rejectIfEmpty(errors, "nome", "field.required");
+		ValidationUtils.rejectIfEmpty(errors, "email", "field.required");
 		
 		Usuario usuario = (Usuario) target;
 		if(usuario.getSenha().length() < 5) {
@@ -25,7 +37,11 @@ public class UsuarioValidation implements Validator {
 		}
 		
 		if(!usuario.getSenha().equals(usuario.getConfSenha())){
-			errors.rejectValue("conf-senha", "field.required.conf-senha");
+			errors.rejectValue("confSenha", "field.required.conf-senha");
+		}
+		
+		if(dao.existe(usuario)) {
+			errors.rejectValue("email", "field.required.email.existe");
 		}
 		
 		

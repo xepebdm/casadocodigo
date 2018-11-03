@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +21,9 @@ public class Usuario implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	
 	private String email;
 	private String senha;
 	private String confSenha;
@@ -27,7 +31,7 @@ public class Usuario implements UserDetails {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Usuario_Role",
-		joinColumns = @JoinColumn(name = "email"), 
+		joinColumns = @JoinColumn(name = "id"), 
 		inverseJoinColumns = @JoinColumn(name = "role_nome"))
 	private List<Role> roles = new ArrayList<>();
 
