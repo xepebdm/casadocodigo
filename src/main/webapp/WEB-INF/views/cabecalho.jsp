@@ -15,12 +15,17 @@
 			<nav id="main-nav">
 				
 				<ul class="nav navbar-nav navbar-left">
-					<security:authorize access="hasRole('ROLE_ADMIN')">
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<li><a href="${s:mvcUrl('PSC#pedidos').build() }"
+							rel="nofollow"><fmt:message key="menu.lista_pedidos" /></a></li>
 						<li><a href="${s:mvcUrl('PC#listar').build() }"
 							rel="nofollow"><fmt:message key="menu.lista_produtos" /></a></li>
+						
 						<li><a href="${s:mvcUrl('PC#form').build() }" rel="nofollow"><fmt:message
 									key="menu.cadastro_produtos" /></a></li>
 					</security:authorize>
+					<li><a href="${s:mvcUrl('UC#listar').build() }"
+							rel="nofollow"><fmt:message key="menu.lista_usuarios" /></a></li>
 					<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">
 							<s:message code="menu.carrinho"
 								arguments="${carrinhoCompras.quantidade}" />

@@ -22,6 +22,7 @@ public class Usuario implements UserDetails {
 	@Id
 	private String email;
 	private String senha;
+	private String confSenha;
 	private String nome;
 
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -95,6 +96,14 @@ public class Usuario implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public String getConfSenha() {
+		return confSenha;
+	}
+
+	public void setConfSenha(String confSenha) {
+		this.confSenha = confSenha;
 	}
 	
 }

@@ -32,4 +32,19 @@ public class UsuarioDAO implements UserDetailsService{
 	public void gravar(Usuario usuario) {
 		manager.persist(usuario);
 	}
+	
+	public List<Usuario> listaDeUsuarios(){
+		return manager.createQuery("select u from Usuario u ", Usuario.class).getResultList();
+	}
+
+	public boolean existe(Usuario usuario) {
+			int existe = manager.createQuery("select count(u.email) from Usuario u where u.email = :pEmail", Usuario.class)
+			.setParameter("pEmail", usuario.getEmail())
+			.getFirstResult();
+			
+			if(existe == 0) {
+				return true;
+			}
+		return false;
+	}
 }
