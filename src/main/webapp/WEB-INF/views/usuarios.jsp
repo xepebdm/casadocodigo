@@ -26,12 +26,19 @@ h3 {
 				<tr>
 					<th scope="col">Nome</th>
 					<th scope="col">E-mail</th>
+					<th scope="col">ROLES</th>
+					<th scope="col">ADD/Edit</th>
 				</tr>
 			</thead>
 			<c:forEach items="${usuarios }" var="usuario">
 				<tr>
 					<td>${usuario.nome }</td>
 					<td>${usuario.email }</td>
+					<td><c:forEach varStatus="i" begin="0"
+							end="${usuario.roles.size() -1 }">
+									- ${usuario.roles.get(i.index).nome }					
+					</c:forEach></td>
+					<td><a href="${s:mvcUrl('UC#roles').arg(0, usuario.id ).build()}" method="get">Edit</a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -21,7 +21,7 @@
 					<th scope="col">Títulos</th>
 				</tr>
 			</thead>
-			<c:forEach items="${pedidos }" var="pedido" varStatus="indice">
+			<c:forEach items="${pedidos }" var="pedido">
 				<tr>
 					<td>${pedido.id }</td>
 					<td>${pedido.valor }</td>
