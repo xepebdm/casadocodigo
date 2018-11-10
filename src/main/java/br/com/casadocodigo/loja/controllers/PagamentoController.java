@@ -1,7 +1,6 @@
 package br.com.casadocodigo.loja.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,8 +25,8 @@ public class PagamentoController {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Autowired
-	private MailSender sender;
+//	@Autowired
+//	private MailSender sender;
 	
 	@RequestMapping(value="/finalizar", method=RequestMethod.POST)
 	public ModelAndView finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model){

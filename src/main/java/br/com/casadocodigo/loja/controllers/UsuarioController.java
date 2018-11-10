@@ -3,6 +3,7 @@ package br.com.casadocodigo.loja.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,6 +28,9 @@ public class UsuarioController {
 
 	@Autowired
 	private RoleDAO roleDao;
+	
+	
+	private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -55,6 +59,12 @@ public class UsuarioController {
 		if (bind.hasErrors()) {
 			return form(usuario);
 		}
+		
+		String encodedPassword = bCryptPasswordEncoder.encode(usuario.getPassword());
+		
+		usuario.setSenha(encodedPassword);
+		usuario.setConfSenha(encodedPassword);
+		
 		dao.gravar(usuario);
 		redirectAtt.addFlashAttribute("sucesso", "Usuário " + usuario.getNome() + " cadastrado com sucesso!");
 

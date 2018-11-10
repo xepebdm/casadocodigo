@@ -19,6 +19,7 @@ public class UsuarioValidation implements Validator {
 	private static final String EMAIL_PATTERN = 
 	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
 	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 
 	
@@ -39,6 +40,11 @@ public class UsuarioValidation implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "email", "field.required");
 		
 		Usuario usuario = (Usuario) target;
+		
+		if(usuario.getNome().length() < 3) {
+			errors.rejectValue("nome", "field.required.nome.invalido");
+		}
+		
 		if(usuario.getSenha().length() < 5) {
 			errors.rejectValue("senha", "field.required.tamanho.invalido");
 			
