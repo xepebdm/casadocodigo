@@ -1,7 +1,7 @@
 # casadocodigo
 Projeto de Formação Desenvolvedor Java com SpringMVC e Hibernate
 
-Antes de iniciar o projeto é necessário criar o banco de dados com o nome sugerido de "casadocodigo", caso você use opte por outro nome
+Antes de iniciar o projeto é necessário criar o banco de dados com o nome sugerido de "casadocodigo", caso você opte por outro nome
 será necessário fazer a alteração devida na classe JPAConfiguration. Nessa classe você deve alterar o nome de usuário do banco, a senha e
 o nome do banco.
 
