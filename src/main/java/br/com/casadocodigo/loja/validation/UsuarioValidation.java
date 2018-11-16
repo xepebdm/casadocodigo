@@ -26,8 +26,7 @@ public class UsuarioValidation implements Validator {
 	public UsuarioValidation(UsuarioDAO dao) {
 		this.dao = dao;
 	}
-	public UsuarioValidation() {
-	}
+	public UsuarioValidation() {}
 
 	@Override
 	public boolean supports(Class<?> clazz) {

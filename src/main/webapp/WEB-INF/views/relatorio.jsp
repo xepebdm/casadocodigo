@@ -19,6 +19,9 @@
 		<c:if test="${empty data }">
 			<h1 class="cdc-call">Relatório de todos os livros</h1>
 		</c:if>
+		
+		${dataGeracao }
+		${quantidade }
 
 		<table class="table table-striped" width="100%">
 			<thead class="thead-light">
