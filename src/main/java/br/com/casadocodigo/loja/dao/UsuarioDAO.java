@@ -33,13 +33,7 @@ public class UsuarioDAO implements UserDetailsService{
 		return usuarios.get(0);
 	}
 
-	public void gravar(Usuario usuario) {
-		
-		// ADIÇÃO DE UMA ROLE USER COMO DEFAULT PARA EVITAR NULLPOINTER EM PARTES DO PROJETO
-		List<Role> roles = new ArrayList<Role>();
-		roles.add(new Role("ROLE_USER"));
-		usuario.setRoles(roles);
-		
+	public void gravar(Usuario usuario) {				
 		manager.persist(usuario);
 	}
 	
